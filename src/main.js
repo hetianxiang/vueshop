@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 import {
   Button,
   Row,
@@ -10,10 +11,11 @@ import {
   Swipe,
   SwipeItem
 } from 'vant'
+import 'swiper/dist/css/swiper.css'
 // import 'vant/lib/vant-css/index.css'
 
 Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem)
-
+Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

@@ -20,15 +20,29 @@
         </van-swipe-item>
       </van-swipe>
     </div>
+    <div class="type-bar">
+      <div v-for="(cate,index) in category" :key="index">
+        <img :src="cate.image" width="100%" />
+        <span>{{cate.mallCategoryName}}</span>
+      </div>
+    </div>
+    <div class="ad-banner">
+      <img :src="adBanner.PICTURE_ADDRESS" width="100%">
+    </div>
+    <shopping-mall :recommendGoods="recommendGoods"/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import ShoppingMall from './ShoppingMall'
 export default {
   data () {
     return {
       msg: 'shoping',
+      category: [],
+      adBanner: '',
+      recommendGoods: [],
       locationIcon: require('../../assets/images/location.png'),
       bannerPicArray: [{
         imageUrl: 'http://7xjyw1.com1.z0.glb.clouddn.com/simleVueDemoPic001.jpg'
@@ -44,11 +58,16 @@ export default {
   },
   created () {
     axios({
-      url: 'https://www.easy-mock.com/mock/5ae2427800247c2aa1efe442/SmileVue/',
+      url: 'https://www.easy-mock.com/mock/5b74dac43f00382f3878a265/smilevue/mock',
       method: 'get'
     })
       .then(response => {
-        console.log(response)
+        if (response.status === 200) {
+          this.category = response.data.data.category
+          this.adBanner = response.data.data.advertesPicture // 获得广告图片
+          this.recommendGoods = response.data.data.recommend // 推荐商品
+          console.log(this.category)
+        }
       })
       .catch((error) => {
         console.log(error)
@@ -59,7 +78,7 @@ export default {
 
     }
   },
-  components: {}
+  components: {ShoppingMall}
 }
 
 </script>
@@ -90,6 +109,23 @@ export default {
 
   .imgs-con img {
     width: 20rem;
+  }
+
+  .type-bar {
+    background-color: #fff;
+    margin: 0 .3rem .3rem .3rem;
+    border-radius: .3rem;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .type-bar div {
+    width: 20%;
+    padding: .3rem;
+    font-size: 12px;
+    text-align: center;
   }
 
 </style>
