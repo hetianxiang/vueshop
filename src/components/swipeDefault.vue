@@ -23,7 +23,6 @@ export default {
           el: '.swiper-pagination'
         }
       }
-
     }
   },
   components: {
