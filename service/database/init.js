@@ -12,13 +12,14 @@ exports.connect = () => {
     // 把所有连接放到这里
 
     // 增加数据库监听事件
-    mongoose.connection.on('disconnected', () => {
+    mongoose.connection.on('disconnected', (err) => {
       console.log('***********数据库断开***********')
       if (maxConnectTimes < 3) {
         maxConnectTimes++
         mongoose.connect(db)
       } else {
-        reject(db)
+        reject(err)
+        console.log(err)
         throw new Error('数据库出现问题，程序无法搞定，请人为修理......')
       }
     })
