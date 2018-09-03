@@ -1,11 +1,17 @@
 const Koa = require('koa')
 const mongoose = require('mongoose')
+const Router = require('koa-router')
+let user = require('./appApi/user.js')
+let router = new Router()
+router.use('/use', user.routes())
+
 const {
   connect,
   initSchema
 } = require('./database/init.js')
 const app = new Koa()
-
+app.use(router.routes())
+app.use(router.allowedMethods())
 // 引入connect
 // const {connect} = require('./database/init.js')
 console.log(initSchema)
