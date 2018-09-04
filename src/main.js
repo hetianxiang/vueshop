@@ -9,12 +9,14 @@ import {
   Row,
   Col,
   Swipe,
-  SwipeItem
+  SwipeItem,
+  Field,
+  NavBar
 } from 'vant'
 import 'swiper/dist/css/swiper.css'
 // import 'vant/lib/vant-css/index.css'
 
-Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem)
+Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Field).use(NavBar)
 Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 

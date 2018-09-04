@@ -3,7 +3,8 @@ let routers = new Router()
 routers.get('/', async (ctx) => {
   ctx.body = '这是用户操作首页'
 })
-routers.get('/register', async (ctx) => {
-  ctx.body = '用户注册接口'
+routers.post('/register', async (ctx) => {
+  // console.log(ctx)
+  ctx.body = ctx.request.body
 })
 module.exports = routers
