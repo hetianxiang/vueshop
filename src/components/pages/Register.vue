@@ -28,6 +28,7 @@
 <script>
 import axios from 'axios'
 import url from '@/serviceAPI.config'
+import { Toast } from 'vant'
 export default {
   data () {
     return {
@@ -40,6 +41,7 @@ export default {
       this.$router.go(-1)
     },
     axiosRegisterUser () {
+      console.log(this.username)
       axios({
         url: url.registerUser,
         method: 'post',
@@ -50,9 +52,18 @@ export default {
       })
         .then(response => {
           console.log(response)
+          // 如果返回code为200，代表注册成功，我们给用户作Toast提示
+          if (response.data.code === 200) {
+            Toast.success('注册成功')
+          } else {
+            console.log(response.data.message)
+            Toast.fail('注册失败')
+          }
+          console.log(response.data.code)
         })
         .catch(err => {
           console.log(err)
+          Toast.fail('注册失败')
         })
     }
   }

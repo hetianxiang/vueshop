@@ -1,11 +1,10 @@
 const Koa = require('koa')
 const app = new Koa()
 const { connect, initSchemas } = require('./database/init.js')
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 const bodyParser = require('koa-bodyparser')
 const cors = require('koa2-cors')
 const Router = require('koa-router')
-
 app.use(bodyParser())
 app.use(cors())
 // app.use(async ctx => {
@@ -35,9 +34,9 @@ app.use(router.allowedMethods())
   initSchemas()
 })()
 
-// app.use(async (ctx) => {
-//   ctx.body = '<h1>Hello Koa2</h1>'
-// })
+app.use(async (ctx) => {
+  ctx.body = '<h1>Hello Koa2</h1>'
+})
 
 app.listen(3000, () => {
   console.log('[Server] starting at port 3000')
